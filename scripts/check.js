@@ -1,0 +1,1 @@
+const fs=require('fs'),path=require('path');function walk(d){for(const f of fs.readdirSync(d)){const p=path.join(d,f);if(fs.statSync(p).isDirectory())walk(p);else if(p.endsWith('.js'))new Function(fs.readFileSync(p,'utf8').replace(/^import .*$/mg,'').replace(/^export /mg,''));}}walk('src');console.log('JS syntax OK');
